@@ -1,0 +1,28 @@
+plugins {
+	id 'idea'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'org.springframework.boot' version '2.7.5' apply false
+	id 'org.springframework.experimental.aot' version '0.12.1' apply false
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+
+	group = 'com.example'
+	version = 'SNAPSHOT'
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
+	repositories {
+		mavenCentral()
+		maven { url 'https://repo.spring.io/release' }
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+		}
+	}
+}

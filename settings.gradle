@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/release' }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'spring-native-multi-modules-bind-properties'
+
+fileTree('.') {
+    include '**/build.gradle'
+    exclude 'build.gradle'
+}.collect {
+    relativePath(it.parent).replace(File.separator, ':')
+}.each {
+    include(it)
+}
